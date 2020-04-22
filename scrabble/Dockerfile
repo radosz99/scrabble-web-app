@@ -1,6 +1,6 @@
 FROM python:3.7.7-alpine
 
-ENV FLASK_APP "game/hello.py"
+ENV FLASK_APP "game/app.py"
 
 RUN apk update
 RUN pip install --no-cache-dir pipenv
