@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Flask Tutorial</title>
+    </head>
+    <body>
+      <h1> Scrabble multiplayer game </h1>
+    </body>
+   <body>
+      <table border = 0.1, width="450", height="450">
+         {% for val in result %}
+            <tr>
+               {% for val2 in val %}
+               <td style="width:20px;height:20px;text-align:center;background-color:rgb(116, 195, 240)"><strong style="font-size: 15px;"> {{ val2 }} </td></strong>
+               {% endfor %}
+            </tr>
+         {% endfor %}
+      </table>
+   </body>
+</html>

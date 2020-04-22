@@ -1,10 +1,9 @@
-from flask import Flask, jsonify, request, abort 
+from flask import Flask, jsonify, request, abort, render_template, flash, redirect, url_for
 
 app = Flask(__name__)
-
-empDB=[
+empDB =[
  {
- 'id':'101',
+ 'id': '101',
  'name':'Saravanan S',
  'title':'Technical Leader'
  },
@@ -15,11 +14,19 @@ empDB=[
  'title':'Sr Software Engineer'
  }]
 
+board=[]
+def prepare_board():
+    f = open('resources/board.csv', "r")
+    bb = [line.strip().lower() for line in f]
+    for x in range(len(bb)):
+        line = bb[x].split(";")
+        upper_line = [y.upper() for y in line]
+        board.append(upper_line)
 
 @app.route('/empdb/employee',methods=['GET'])
 def getAllEmp():
 
-    return jsonify({'emps':empDB})
+    return jsonify({'emps': empDB})
 
 @app.route('/empdb/employee/<empId>',methods=['GET'])
 def getEmp(empId):
@@ -54,11 +61,16 @@ def deleteEmp(empId):
     empDB.remove(em[0])
     return jsonify({'response':'Success'})
 
+@app.route('/')
+def student():
+    prepare_board()
+    return render_template('start.html')
 
-@app.route("/")
-def hello():
+@app.route('/game',methods = ['POST', 'GET'])
+def result():
+   if request.method == 'POST':
+      #result = request.form
+      return render_template("game.html",result = board)
 
-    return "Hello World!"
-
-if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug=True)
