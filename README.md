@@ -1,6 +1,6 @@
 **<p align="center"> Good Programming Practices </p>**
 _________________________________
-**<p align="center"> Wroc³aw University of Science and Technology </p>**
+**<p align="center"> Wrocaw University of Science and Technology </p>**
 **<p align="center"> Computer Science, Faculty of Electronics, 6 semester </p>**
 **<p align="center"> Radoslaw Lis </p>**
 
@@ -11,7 +11,7 @@ _________________________________
 
 <a name="desc"></a>
 # General info
-*Jeszcze nie gotowa, najpóŸniej wieczór 23.04 bêdzie ukoñczona*\
+*Jeszcze nie gotowa, najpozniej wieczor 23.04 bedzie ukonczona*\
 
 Multiplayer scrabble game
 
