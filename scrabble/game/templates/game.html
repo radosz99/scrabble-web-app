@@ -1,7 +1,9 @@
 <!doctype html>
 <html>
    <head>
-          <!-- Required meta tags -->
+   <script src="jquery-3.5.0.min.js"></script>
+   <script src="/functions.js"></script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
@@ -27,6 +29,13 @@
          tr{
             max-height: 1px;
          }
+
+         label {
+            color: white;
+            font-weight: bold;
+            padding: 4px;
+         }
+
          </style>
       <meta charset="utf-8">
       <title>Scrabble</title>
@@ -53,28 +62,54 @@
     </nav>
 
    <div class="row">
-      <div class="col-1"></div>
       <div class="col-4">
          <body>
-            <p style="color:white;margin-top: 3cm"></p>
-            {% for user in users %}
-            <p style="color:white;font-size:20"><strong style="font-size: 13px;">{% if user[3] == true %}
-               KOMPUTER {% endif %} Uczestnik {{ user[0] }} - {{user[1]}} pkt., litery - {{user[2]}}<br/>  </strong></p>
-            {% endfor %}
-            <p style="color:white;font-size:20"><strong style="font-size: 13px;">Teraz kolej uczestnika {{turn}}<br/>  </strong></p>
+            <h1 style="color:white;margin-top: 0.5cm;margin-left: 1cm">Punktacja:</h1>
+            <table class="table" style="margin-left: 1cm">
+               <thead>
+                 <tr>
+                   <th style="color:white;" scope="col">Uczestnik</th>
+                   <th style="color:white" scope="col">Punkty</th>
+                   <th style="color:white" scope="col">Litery</th>
+                   <th style="color:white" scope="col">Komputer</th>
+                 </tr>
+               </thead>
+               <tbody>
+                  {% for user in users %}
+                  <tr>
+                     <th style="color:white;font-size:20" scope="row">{{user[0]}}</th>
+                     <td style="color:white;font-size:20">{{user[1]}}</td>
+                     <td style="color:white;font-size:20">{{user[2]}}</td>
+                     {% if user[3] == true %}
+                        <td style="color:white;font-size:20">TAK</td>
+                     {% endif %}
+                     {% if user[3] == false %}
+                        <td style="color:white;font-size:20">NIE</td>
+                     {% endif %} 
+                  </tr>
+                  {% endfor %}
+               </tbody>
+             </table>
+             <p style="color:white;font-size:20;margin-top: 1.5cm;margin-left: 1cm"><strong style="font-size: 13px;">Pozostałych liter w puli - {{letters_quantity}}<br/>  </strong></p>
+            <p style="color:white;font-size:20;margin-top: 0.3cm;margin-left: 1cm"><strong style="font-size: 13px;">Teraz kolej uczestnika {{turn}}<br/>  </strong></p>
          </body>
-         <form action = "http://localhost:5000/game/move" method = "POST">
-            <p style="color:white;margin-top: 2cm">Słowo do wstawienia: <input type = "text" name = "Number of players" /></p>
-            <p><input type = "submit" value = "Ok" /></p>
+
+          <form class="form-inline" action="http://localhost:5000/game/move" method="POST">
+              <label style="margin-right: 0.2cm;margin-left: 1cm" >Wyraz:</label>
+              <input style="margin-right: 0.5cm" type="input" class="form-control" name = "move">
+           <button id = "word_btn" class="btn btn-secondary" type="submit">Ok</button>
           </form> 
-          <form action = "http://localhost:5000/game/computer" method = "POST">
-            <p><input type = "submit" value = "Dodaj komputer do gry" /></p>
-          </form> 
-          <form action = "http://localhost:5000/game/save" method = "POST">
-            <p><input type = "submit" value = "Zapisz stan gry" /></p>
-          </form> 
+
+
+         <form name = "reply" id="replyForm" action="http://localhost:5000/game/computer" method = "POST">
+            <button style="margin-top: 1.5cm;margin-left: 1cm" id = "add_computer_btn" class="btn btn-primary" type="submit">Dodaj komputer do gry</button>
+         </form>
+
+         <form name = "reply" id="replyForm" action="http://localhost:5000/game/save" method = "POST">
+            <button style="margin-top: 0.5cm;margin-left: 1cm" id = "save_btn" class="btn btn-primary" type="submit">Zapisz stan gry</button>
+         </form>
        </div>
-      <div class="col-7">
+      <div class="col-5">
          <div class="table-responsive-sm">
             <table class="table table-condensed" id="t01">
                {% for x in range(15) %} 
@@ -90,6 +125,28 @@
                {% endfor %}
             </table>
          </div>
+      </div>
+      <div class="col-2">
+         <h1 style="color:white;margin-top: 0.5cm">Ostatnie ruchy:</h1>
+         <table class="table">
+            <thead>
+              <tr>
+                <th style="color:white;" scope="col">Uczestnik</th>
+                <th style="color:white" scope="col">Słowo</th>
+                <th style="color:white" scope="col">Punkty</th>
+              </tr>
+            </thead>
+            <tbody>
+               {% for move in moves %}
+               <tr>
+                  <th style="color:white;font-size:20" scope="row">{{move[0]}}</th>
+                  <td style="color:white;font-size:20">{{move[1]}}</td>
+                  <td style="color:white;font-size:20">{{move[2]}}</td>
+               </tr>
+               {% endfor %}
+            </tbody>
+          </table>
+         </form>
       </div>
    </div>
 

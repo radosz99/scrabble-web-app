@@ -17,16 +17,14 @@ class Algorithm:
             letters_not_used = self.letters_not_used(best, coords[0])
 
             self.update_board(coords,best)
-            str_other_best_valid = self.get_string_with_others_best(sorted_list_of_valid_words)
 
         
         else:
             best=''
             points=0
-            str_other_best_valid=''
-            letters_not_used=[]
+            letters_not_used=self.letters
 
-        return self.board,points
+        return self.board,points,letters_not_used, best.upper()
 
     def letters_not_used(self,word, pattern_letters):
         for char in pattern_letters:
@@ -189,8 +187,6 @@ class Algorithm:
         for pattern in pattern_h_bridges:
             self.pattern_board.append(pattern)
         
-        # for pattern in self.pattern_board:
-        #     print(pattern)
 
     def evaluate_move(self, word_with_pattern):
         coords = word_with_pattern[1]

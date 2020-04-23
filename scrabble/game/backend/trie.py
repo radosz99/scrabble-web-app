@@ -1,5 +1,5 @@
 def read_words():
-    words = open('resources/wordsPL.txt', "r")
+    words = open('resources/wordsPL.txt', "r",encoding='utf-8')
     return [line.strip().lower() for line in words]
 
 def make_trie():

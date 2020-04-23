@@ -10,8 +10,9 @@ def prepare_board():
         board.append(upper_line)
     return board
         
-def make_move(move, board):
+def make_move(move, board, user_letters):
     letters = move.split(";")
+    used_letters=[]
     sum=0
     if(len(letters)==7):
         bonus=50
@@ -21,22 +22,32 @@ def make_move(move, board):
 
     for letter in letters:
         details=letter.split(":")
-        char = details[2]
+        char = details[2].upper()
+        used_letters.append(char)
         if(board[int(details[0])][int(details[1])]==''):
             board[int(details[0])][int(details[1])]=char.upper()
             sum_letter,multiplier_word = get_field_value(char,int(details[0]),int(details[1]))
             sum=sum+sum_letter
             multiplier=int(multiplier*multiplier_word)
-    return board,sum*multiplier+bonus
 
-def random_string(letters):
-    string=''
-    while(len(string)!=7 and len(letters)!=0):
+    used_letters_string = ' '.join(map(str, used_letters))
+    for letter in used_letters:
+        position = user_letters.find(letter)
+        if(position!=-1):
+            help_letters = user_letters[0 : position ] + user_letters[position + 1 : len(user_letters)]
+            user_letters = help_letters
+        else:
+            print("ERROR")
+            #obsluga braku posiadania takowych liter przez uczestnika 
+    return board,sum*multiplier+bonus, user_letters.lower(),used_letters_string
+
+def random_string(letters, letters_not_used):
+    while(len(letters_not_used)!=7 and len(letters)!=0):
         index=random.randint(0,len(letters)-1)
         char = letters[index]
-        string=string+char
+        letters_not_used=letters_not_used+char
         letters.remove(char)
-    return string,letters
+    return letters_not_used,letters
 
 
 def get_field_value(char, x,y):
