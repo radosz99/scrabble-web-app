@@ -1,21 +1,97 @@
 <!doctype html>
 <html>
    <head>
+          <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <style>
+         body {
+           background-color: rgb(0, 0, 0);
+         }
+         .table {
+            border-collapse: collapse;
+            width: 80%;
+            height: 50%;
+         }      
+         th, td {
+            padding: 8px;
+            border-top: 4px solid #000!important;
+            border-bottom: 4px solid #000!important;
+            border-left: 4px solid #000;
+            border-right: 4px solid #000;
+            width:20px
+         }
+
+         tr{
+            max-height: 1px;
+         }
+         </style>
       <meta charset="utf-8">
-      <title>Flask Tutorial</title>
-    </head>
-    <body>
-      <h1> Scrabble multiplayer game </h1>
+      <title>Scrabble</title>
+   </head>
+
+   <body> 
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </body>
-   <body>
-      <table border = 0.1, width="450", height="450">
-         {% for val in result %}
-            <tr>
-               {% for val2 in val %}
-               <td style="width:20px;height:20px;text-align:center;background-color:rgb(116, 195, 240)"><strong style="font-size: 15px;"> {{ val2 }} </td></strong>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Scrabble</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+   <div class="row">
+      <div class="col-1"></div>
+      <div class="col-4">
+         <body>
+            <p style="color:white;margin-top: 3cm"></p>
+            {% for user in users %}
+            <p style="color:white;font-size:20"><strong style="font-size: 13px;">{% if user[3] == true %}
+               KOMPUTER {% endif %} Uczestnik {{ user[0] }} - {{user[1]}} pkt., litery - {{user[2]}}<br/>  </strong></p>
+            {% endfor %}
+            <p style="color:white;font-size:20"><strong style="font-size: 13px;">Teraz kolej uczestnika {{turn}}<br/>  </strong></p>
+         </body>
+         <form action = "http://localhost:5000/game/move" method = "POST">
+            <p style="color:white;margin-top: 2cm">Słowo do wstawienia: <input type = "text" name = "Number of players" /></p>
+            <p><input type = "submit" value = "Ok" /></p>
+          </form> 
+          <form action = "http://localhost:5000/game/computer" method = "POST">
+            <p><input type = "submit" value = "Dodaj komputer do gry" /></p>
+          </form> 
+          <form action = "http://localhost:5000/game/save" method = "POST">
+            <p><input type = "submit" value = "Zapisz stan gry" /></p>
+          </form> 
+       </div>
+      <div class="col-7">
+         <div class="table-responsive-sm">
+            <table class="table table-condensed" id="t01">
+               {% for x in range(15) %} 
+               <th style="text-align:center;color:rgb(160, 160, 160)"><strong style="font-size: 13px;"> {{ x }} </td></strong>
                {% endfor %}
-            </tr>
-         {% endfor %}
-      </table>
-   </body>
+               {% for x in range(15) %}
+                  <tr style="height: 4px;">
+                     {% for val2 in board[x] %}
+                     <td style="text-align:center;background-color:rgb(199, 211, 218); color:black"><strong style="font-size: 20px;"> {{ val2 }} </td></strong>
+                     {% endfor %}
+                     <th style="text-align:center;color:rgb(199, 194, 194)"><strong style="font-size: 13px;"> {{ x }} </td></strong>
+                  </tr>
+               {% endfor %}
+            </table>
+         </div>
+      </div>
+   </div>
+
+
 </html>

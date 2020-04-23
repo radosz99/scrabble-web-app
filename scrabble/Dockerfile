@@ -9,6 +9,8 @@ WORKDIR /usr/src/app
 
 COPY Pipfile Pipfile.lock ./
 COPY game ./game
+COPY game/resources ./resources
+COPY game/backend ./backend
 COPY ./requirements.txt ./requirements.txt
 
 RUN pip install -r requirements.txt
