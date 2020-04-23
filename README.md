@@ -22,7 +22,14 @@ Words are inserted in the form:
 (coordinate X of letter1):(coordinate Y of letter1):(letter1);(coordinate X of letter2):(coordinate Y of letter2):(letter2);...
 ```
 
-The correctness of movements has not been implemented yet (but of course the computer does it correctly).
+The correctness of moves has not been implemented yet (but of course the computer does it correctly).
+
+- [x] Saving to file
+- [x] Playing with computer
+- [x] Move evaluating
+- [ ] Loading game state from file
+- [ ] Verify correctness of moves
+
 <a name="run"></a>
 # Run
 
