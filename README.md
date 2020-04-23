@@ -42,5 +42,5 @@ $ docker run -p 5000:5000 game
 <a name="sc"></a>
 # Screenshot
 <p align="center">
-  <img src="https://i.imgur.com/9T3o4km.png" width=100% alt="Img"/>
+  <img src="https://i.imgur.com/w7iV0sz.png" width=100% alt="Img"/>
 </p>
