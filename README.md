@@ -22,6 +22,10 @@ Words are inserted in the form:
 (coordinate X of letter1):(coordinate Y of letter1):(letter1);(coordinate X of letter2):(coordinate Y of letter2):(letter2);...
 ```
 
+For example:
+```
+5:6:A;5:7:B;5:8:C;5:9:D;5:10:E
+```
 The correctness of moves has not been implemented yet (but of course the computer does it correctly).
 
 - [x] Saving to file
