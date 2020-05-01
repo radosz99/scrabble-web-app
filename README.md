@@ -33,8 +33,7 @@ The correctness of moves has not been implemented yet (but of course the compute
 # Run
 
 ```
-$ git clone https://git.e-science.pl/rlis241385_dpp/rlis_flaskapi.git
-$ cd rlis_flaskapi/scrabble
+$ git clone https://github.com/radosz99/scrabble-web-app.git && cd scrabble-web-app/scrabble
 $ docker build -t game .
 $ docker run -p 5000:5000 game
 ```
