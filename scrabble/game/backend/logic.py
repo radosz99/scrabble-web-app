@@ -30,7 +30,7 @@ def make_move(move, board, user_letters):
             sum=sum+sum_letter
             multiplier=int(multiplier*multiplier_word)
 
-    used_letters_string = ' '.join(map(str, used_letters))
+    used_letters_string = ''.join(map(str, used_letters))
     for letter in used_letters:
         position = user_letters.find(letter)
         if(position!=-1):
@@ -85,3 +85,71 @@ def get_char_value(char):
     if(char=='ź'):
         return 9
     return 1
+
+def save_game_log_to_file(board,letters,users,turn,moves):
+    text_file = open("resources/saved_game_log.txt", "w")
+    users_string=''
+    move_string=''
+    letters_string=''
+
+    for char in letters:
+        letters_string=letters_string+char
+    text_file.write("%s\n" % letters_string)
+
+    for user in users:
+        users_string=users_string+str(user[0])+"," + str(user[1])+"," + str(user[2])+ "," + str(user[3])+ ";"
+    text_file.write("%s\n" % users_string[0:len(users_string)-1])
+
+    text_file.write("%s\n" % str(turn))
+
+    for line in board:
+        row=''
+        for char in line:
+            row=row+char+";"
+        text_file.write("%s\n" % row[0:len(row)-1])
+
+    for move in moves:
+        move_string = move_string+str(move[0])+","+str(move[1])+","+str(move[2])+ ";"
+    text_file.write("%s" % move_string[0:len(move_string)-1])
+    text_file.close()
+
+
+def get_game_log_from_file():
+    board=[]
+    users=[]
+    moves=[]
+    turn=0
+    letters = []
+
+    text_file = open("resources/saved_game_log.txt", "r")
+    letters_string = text_file.readline()
+    letters= list(letters_string[0:len(letters_string)-1])
+
+    users_string = text_file.readline()
+    users_non_converted= users_string[0:len(users_string)-1].split(';')
+    for user_non_converted in users_non_converted:
+        if(user_non_converted==''):
+            break
+        users_parts = user_non_converted.split(',')
+        if(users_parts[3]=="True"):
+            users.append((int(users_parts[0]),int(users_parts[1]),users_parts[2],True))
+        else:
+            users.append((int(users_parts[0]),int(users_parts[1]),users_parts[2],False))
+
+    turn = int(text_file.readline())
+
+    for i in range(15):
+        row_string = text_file.readline()
+        row=row_string[0:len(row_string)-1].split(';')
+        board.append(row)
+
+    moves_string = text_file.readline()
+    moves_non_converted= moves_string.split(';')
+    for move_non_converted in moves_non_converted:
+        if(move_non_converted==''):
+            break
+        move_parts = move_non_converted.split(',')
+        moves.append((move_parts[0],move_parts[1],move_parts[2]))
+    text_file.close()
+
+    return board, users, moves, turn, letters

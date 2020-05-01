@@ -199,29 +199,38 @@ class Algorithm:
         if(coords[5]=='v'):
             for x in range (len(word)):
                 if(len(coords[0])==2):
-                    if(x!=coords[3] and x!=(coords[3]+coords[6])):
-                        info = self.get_field_value(word[x], coords[1]+x-coords[3],coords[2])
-                        sum=sum+int(info[0])
-                        multiplier=int(multiplier*int(info[1]))
+                    info = self.get_field_value(word[x], coords[1]+x-coords[3],coords[2])
+                    if(x==coords[3] and x==(coords[3]+coords[6])):
+                        sum=sum+info[1]
+                    else:
+                        sum=sum+int(info[0]*info[1])
+                        multiplier=int(multiplier*int(info[2]))
                 else:
-                    if(x!=coords[3]):
-                        info = self.get_field_value(word[x], coords[1]+x-coords[3],coords[2])
-                        sum=sum+int(info[0])
-                        multiplier=int(multiplier*int(info[1]))
+                    info = self.get_field_value(word[x], coords[1]+x-coords[3],coords[2])
+                    if(x==coords[3]):
+                        sum=sum+info[1]
+                    else:
+                        sum=sum+int(info[0]*info[1])
+                        multiplier=int(multiplier*int(info[2]))
 
         if(coords[5]=='h'):
             for x in range (len(word)):
                 if(len(coords[0])==2):
-                    if(x!=coords[3] and x!=(coords[3]+coords[6])):
-                        info = self.get_field_value(word[x], coords[1],coords[2]+x-coords[3])
-                        sum=sum+int(info[0])
-                        multiplier=int(multiplier*int(info[1]))
+                    info = self.get_field_value(word[x], coords[1],coords[2]+x-coords[3])
+                    if(x==coords[3] and x==(coords[3]+coords[6])):
+                        sum=sum+info[1]
+                    else:
+                        sum=sum+int(info[0]*info[1])
+                        multiplier=int(multiplier*int(info[2]))
                 else:
-                    if(x!=coords[3]):
-                        info = self.get_field_value(word[x], coords[1],coords[2]+x-coords[3])
-                        sum=sum+int(info[0])
-                        multiplier=int(multiplier*int(info[1]))
+                    info = self.get_field_value(word[x], coords[1],coords[2]+x-coords[3])
+                    if(x==coords[3]):
+                        sum=sum+info[1]
+                    else:
+                        sum=sum+int(info[0]*info[1])
+                        multiplier=int(multiplier*int(info[2]))
         return sum*multiplier+bonus
+                        
                         
 
 
@@ -243,7 +252,7 @@ class Algorithm:
             letter_multiplier=1
             word_multiplier=1
 
-        return letter_multiplier*letter_value, word_multiplier
+        return letter_multiplier,letter_value, word_multiplier
 
     def get_char_value(self,char):
         #PL
