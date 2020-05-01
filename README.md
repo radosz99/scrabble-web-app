@@ -14,9 +14,6 @@ _________________________________
 
 Multiplayer scrabble game. First clash with the web, don't judge me :(
 
-On the start page (*/*) select number of players and go to the main view (*/game/view*). 
-It is possible to join a 'computer' based on the algorithm from *lab07* to the game and save the current state to the *.txt* file - the board, users and their points and who has the queue.
-
 Words are inserted in the form:
 ```
 (coordinate X of letter1):(coordinate Y of letter1):(letter1);(coordinate X of letter2):(coordinate Y of letter2):(letter2);...
@@ -31,7 +28,6 @@ The correctness of moves has not been implemented yet (but of course the compute
 - [x] Saving to file
 - [x] Playing with computer
 - [x] Move evaluating
-- [ ] Loading game state from file
 - [ ] Verify correctness of moves
 
 <a name="run"></a>
