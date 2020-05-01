@@ -47,5 +47,5 @@ $ docker run -p 5000:5000 game
 # Screenshot
 From the internal battle of computers:  
 <p align="center">
-  <img src="https://i.imgur.com/w7iV0sz.png" width=100% alt="Img"/>
+<img src="https://github.com/radosz99/scrabble_web_app/tree/master/scrabble/screenshot.png" width=80% />
 </p>
