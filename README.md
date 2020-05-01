@@ -12,7 +12,7 @@ _________________________________
 <a name="desc"></a>
 # General info
 
-Multiplayer scrabble game.
+Multiplayer scrabble game. First clash with the web, don't judge me :(
 
 On the start page (*/*) select number of players and go to the main view (*/game/view*). 
 It is possible to join a 'computer' based on the algorithm from *lab07* to the game and save the current state to the *.txt* file - the board, users and their points and who has the queue.
@@ -47,5 +47,5 @@ $ docker run -p 5000:5000 game
 # Screenshot
 From the internal battle of computers:  
 <p align="center">
-<img src="https://github.com/radosz99/scrabble_web_app/blob/master/scrabble/screenshot.png" width=80% />
+<img src="https://github.com/radosz99/scrabble_web_app/blob/master/scrabble/screenshot.png" width=100% />
 </p>
