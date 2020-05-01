@@ -25,8 +25,7 @@ For example:
 ```
 The correctness of moves has not been implemented yet (but of course the computer does it correctly).
 
-- [x] Saving to file
-- [x] Playing with computer
+- [x] Playing with a computer
 - [x] Move evaluating
 - [ ] Verify correctness of moves
 
